@@ -15,6 +15,12 @@ pruning, late-move reductions, killer-move ordering, and tapered
 piece-square tables, all under a fixed node budget — never a clock — so
 every position always gets the same move.
 
+The board is a 120-character string that rotates after every move, so
+the side to move is always the uppercase army at the bottom. The root
+is repetition-aware: it replays the game's moves, and when the engine
+stands better it will not drift into a threefold draw, while a worse
+position is allowed to take the draw.
+
 ## Run it
 
 ```sh
@@ -22,7 +28,7 @@ MAKEFUN_ENV_URL=http://localhost:8080 python3 main.py
 ```
 
 Point `MAKEFUN_ENV_URL` at a tiny-chess-01 env; the engine plays every
-game of the gauntlet and prints each result to stderr.
+game of the gauntlet until the env reports the run done.
 
 ---
 
